@@ -13,15 +13,13 @@ function computerPlay(){
         compSelection = "Scissors"
     }
 
-    if (compSelection!="Rock" || compSelection!="Paper" || compSelection!="Scissors") {
-        console.log("Invalid Response! You lost a try!")
-    }
     
     return compSelection
 }
 
 function playRound() {
-    let playerSelection = window.prompt("What do you pick? Rock, Paper, or Scissors?")
+    let playerSelection = this.id;
+    console.log(this.id)
     let computerSelection = computerPlay()
     if(computerSelection == playerSelection) {
         console.log("That's a draw!")
@@ -48,8 +46,17 @@ function playRound() {
             console.log("You Win! Paper beats Rock")
   }
 
+    else {
+        console.log("Invalid Response! You lost a try!")
+    }
+
 }
 
-for (let i = 0; i < 5; i++) {
-    playRound()
-}
+
+
+// Create three buttons, one for each selection. Add an event listener to
+// the buttons that call your playRound function with the correct
+// playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+document.getElementById('Rock').onclick = playRound;
+document.getElementById('Paper').onclick = playRound;
+document.getElementById('Scissors').onclick = playRound;
