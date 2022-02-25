@@ -18,10 +18,17 @@ function computerPlay(){
 }
 
 
+// Create three buttons, one for each selection. Add an event listener to
+// the buttons that call your playRound function with the correct
+// playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+const buttons = document.querySelectorAll('button');
+
+let computerPoints = 0;
+let playerPoints = 0;
+
 function playRound(playerSelection) {
     let computerSelection = computerPlay()
-    let computerPoints = 0;
-    let playerPoints = 0;
+
 
     if(playerSelection == "Rock" && computerSelection=="Scissors" ||
         playerSelection == "Paper" && computerSelection=="Rock" ||
@@ -29,9 +36,11 @@ function playRound(playerSelection) {
 
             playerPoints = playerPoints + 1; //PLAYER POINTS INCREMENT
 
-            results.innerHTML = playerSelection + " beats " + computerSelection + "<br>Player Score: " + playerPoints +"</br>"+ "<br>Computer  Score: " + computerPoints;
+            results.innerHTML = "You Win!" + playerSelection + " beats " + computerSelection + "<br>Player Score: " + playerPoints +"</br>"+ "<br>Computer  Score: " + computerPoints;
             if(playerPoints == 5){
-                results.textContent = "You Win!"
+                results.textContent = "You Win!";
+                buttons.forEach(button => {button.disabled = true;})
+                results.innerHTML = "You Win The Game! " + "<br>Player Score: " + playerPoints +"</br>"+ "<br>Computer  Score: " + computerPoints;
             }
         }
     
@@ -43,10 +52,12 @@ function playRound(playerSelection) {
 
         computerPoints = computerPoints + 1;//COMPUTER POINTS INCREMENT
 
-        results.innerHTML = computerSelection + " beats " + playerSelection + 
+        results.innerHTML = "You Lose!" + computerSelection + " beats " + playerSelection + 
         "<br>Player Score: " + playerPoints +"</br>"+ "<br>Computer  Score: " + computerPoints;
-        if(computerPoints == 5)
-            results.textContent = "You Lose! However, Computer Wins!"
+        if(computerPoints == 5){
+            buttons.forEach(button => {button.disabled = true;})
+            results.innerHTML = "You Lose! However, Computer Wins The Game! " + "<br>Player Score: " + playerPoints +"</br>"+ "<br>Computer  Score: " + computerPoints;
+        }
 
     }
 
@@ -54,12 +65,6 @@ function playRound(playerSelection) {
 }
 
 
-
-
-// Create three buttons, one for each selection. Add an event listener to
-// the buttons that call your playRound function with the correct
-// playerSelection every time a button is clicked. (you can keep the console.logs for this step)
-const buttons = document.querySelectorAll('button');
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
 
